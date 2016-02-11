@@ -26,22 +26,12 @@ movies << {
   stars: ["Leonardo DiCaprio", "JGL"]
 }
 
-under_100 = movies.select do |movie|
-  movie[:budget] <= 100
-end
+movies
+  .select {|movie| movie[:budget] <= 100}
+  .map {|movie| movie[:title]}
+  .each {|title| puts "#{title} had a budget of 100 or less."}
 
-under_100_titles = under_100.map do |movie|
-  movie[:title]
-end
-
-puts under_100_titles
-
-actor_dicaprio = movies.select do |movie|
-  movie[:stars].include? "Leonardo DiCaprio" #Only works with full name?
-end
-
-actor_dicaprio_titles = actor_dicaprio.map do |movie|
-  movie[:title]
-end
-
-puts actor_dicaprio_titles
+movies
+  .select{|movie| movie[:stars].include? "Leonardo DiCaprio"}
+  .map {|movie| movie[:title]}
+  .each {|title| puts "#{title} had Leonardo Dicaprio as a star."}
